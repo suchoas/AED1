@@ -15,15 +15,11 @@ int main() {
             } 
             else if (expressao[i] == ')') {
                 saldo--;
-                
-               
                 if (saldo < 0) {
                     correta = 0;
                 }
             }
         }
-
-       
         if (saldo != 0) {
             correta = 0;
         }
