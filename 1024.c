@@ -8,7 +8,8 @@ int main(){
     getchar();
 
     while(N--){
-        gets(linha);
+        fgets(linha, sizeof(linha), stdin);
+        linha[strcspn(linha, "\n")] = '\0';
         M = strlen(linha);
 
         for(i = 0; i < M; i++){
