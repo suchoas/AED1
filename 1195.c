@@ -82,7 +82,7 @@ void freeTree(Node* root) {
     freeTree(root->right);
     free(root);
 }
-void printTraversal(const char* prefix, int arr[], int N) {
+void print(const char* prefix, int arr[], int N) {
     printf("%s", prefix);
     for (int i = 0; i < N; i++) {
         
@@ -116,9 +116,9 @@ int main() {
         postOrder(root);
         
         printf("Case %d:\n", i);
-        printTraversal("Pre.:", preOrderArr, N);
-        printTraversal("In..:", inOrderArr, N);
-        printTraversal("Post:", postOrderArr, N);
+        print("Pre.:", preOrderArr, N);
+        print("In..:", inOrderArr, N);
+        print("Post:", postOrderArr, N);
         
         printf("\n");
         
