@@ -13,20 +13,20 @@ typedef struct {
 Aresta arestas[MAX_ARESTAS];
 int pai[MAX_VERTICES];
 
-void inicializar_conjuntos(int m) {
+void inicializar(int m) {
     for (int i = 0; i < m; i++) {
         pai[i] = i;
     }
 }
 
-int encontrar_raiz(int i) {
+int encontrar(int i) {
     if (pai[i] == i) return i;
-    return pai[i] = encontrar_raiz(pai[i]);
+    return pai[i] = encontrar(pai[i]);
 }
 
-int unir_conjuntos(int i, int j) {
-    int raiz_i = encontrar_raiz(i);
-    int raiz_j = encontrar_raiz(j);
+int unir(int i, int j) {
+    int raiz_i = encontrar(i);
+    int raiz_j = encontrar(j);
 
     if (raiz_i != raiz_j) {
         pai[raiz_i] = raiz_j;
@@ -35,8 +35,13 @@ int unir_conjuntos(int i, int j) {
     return 0;
 }
 
-int comparar_arestas(const void *a, const void *b) {
-    return ((Aresta*)a)->custo - ((Aresta*)b)->custo;
+int comparar(const void *a, const void *b) {
+    Aresta *x = (Aresta *)a;
+    Aresta *y = (Aresta *)b;
+    if(x->custo < y->custo) return -1;
+    else
+        return 1;
+    return 0;
 }
 
 int main() {
@@ -44,30 +49,30 @@ int main() {
 
     while (scanf("%d %d", &m, &n) && (m != 0 || n != 0)) {
         
-        int custo_total_inicial = 0;
+        int total = 0;
 
         for (int i = 0; i < n; i++) {
             scanf("%d %d %d", &arestas[i].origem, &arestas[i].destino, &arestas[i].custo);
-            custo_total_inicial += arestas[i].custo;
+            total += arestas[i].custo;
         }
 
-        qsort(arestas, n, sizeof(Aresta), comparar_arestas);
+        qsort(arestas, n, sizeof(Aresta), comparar);
 
-        inicializar_conjuntos(m);
+        inicializar(m);
 
         int custo_mst = 0;
-        int arestas_selecionadas = 0;
+        int selecionadas = 0;
 
         for (int i = 0; i < n; i++) {
-            if (unir_conjuntos(arestas[i].origem, arestas[i].destino)) {
+            if (unir(arestas[i].origem, arestas[i].destino)) {
                 custo_mst += arestas[i].custo;
-                arestas_selecionadas++;
+                selecionadas++;
             }
             
-            if (arestas_selecionadas == m - 1) break;
+            if (selecionadas == m - 1) break;
         }
 
-        printf("%d\n", custo_total_inicial - custo_mst);
+        printf("%d\n", total - custo_mst);
     }
 
     return 0;
