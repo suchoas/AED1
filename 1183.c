@@ -6,7 +6,7 @@ int main() {
     double soma = 0.0;
     int contador = 0;
     
-    const int TOTAL_ELEMENTOS_AREA = 66;
+    const int elementos = 66;
 
     if (scanf(" %c", &operacao) != 1) {
         return 1;
@@ -32,7 +32,7 @@ int main() {
     if (operacao == 'S') {
         printf("%.1lf\n", soma);
     } else if (operacao == 'M') {
-        double media = soma / TOTAL_ELEMENTOS_AREA;
+        double media = soma / elementos;
         printf("%.1lf\n", media);
     }
 
