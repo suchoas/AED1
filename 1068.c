@@ -1,34 +1,34 @@
 #include <stdio.h>
-#include <stdlib.h>
 
 int main() {
-    char expressao[1005]; 
+    char expressao[1005];
 
     while (scanf("%s", expressao) != EOF) {
-        
-        int saldo = 0;
-        int correta = 1; 
+
+        int aberto = 0;
+        int correta = 1;
 
         for (int i = 0; expressao[i] != '\0'; i++) {
             if (expressao[i] == '(') {
-                saldo++;
+                aberto++;
             } 
             else if (expressao[i] == ')') {
-                saldo--;
-                if (saldo < 0) {
+                aberto--;
+                if (aberto < 0) {
                     correta = 0;
+                    break; 
                 }
             }
         }
-        if (saldo != 0) {
+
+        if (aberto != 0) {
             correta = 0;
         }
 
-        if (correta) {
+        if (correta)
             printf("correct\n");
-        } else {
+        else
             printf("incorrect\n");
-        }
     }
 
     return 0;
