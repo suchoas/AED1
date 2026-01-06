@@ -33,7 +33,7 @@ int main() {
                 vagao++;
 
             
-                while (topo > 0 && posicao < N && pilha[topo - 1] == alvo[posicao]) {
+                while (topo > 0 && posicao < N && pilha[topo - 1] == saida[posicao]) {
                     topo--;      
                     posicao++; 
                 }
