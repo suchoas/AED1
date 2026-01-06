@@ -1,20 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
 typedef struct Node {
     int data;
     struct Node *left;
     struct Node *right;
 } Node;
 
-
 int preOrderArr[500];
 int inOrderArr[500];
 int postOrderArr[500];
 
 int preIdx, inIdx, postIdx;
-
 
 Node* createNode(int value) {
     Node* newNode = (Node*)malloc(sizeof(Node));
@@ -33,7 +30,6 @@ Node* insert(Node* root, int value) {
         return createNode(value);
     }
     
-    
     if (value < root->data) {
        
         root->left = insert(root->left, value);
@@ -41,11 +37,8 @@ Node* insert(Node* root, int value) {
        
         root->right = insert(root->right, value);
     }
-    
- 
     return root;
 }
-
 
 void preOrder(Node* root) {
     if (root == NULL) {
@@ -63,7 +56,6 @@ void inOrder(Node* root) {
     inOrderArr[inIdx++] = root->data;  
     inOrder(root->right);               
 }
-
 
 void postOrder(Node* root) {
     if (root == NULL) {
@@ -94,15 +86,11 @@ void print(const char* prefix, int arr[], int N) {
 int main() {
     int C, N, value;
     
-    
     scanf("%d", &C);
     
     for (int i = 1; i <= C; i++) {
-       
         Node* root = NULL;
-        
         scanf("%d", &N);
-        
         for (int j = 0; j < N; j++) {
             scanf("%d", &value);
             root = insert(root, value);
